@@ -17,6 +17,9 @@ module.exports = {
   ],
   // add your custom rules here
   'rules': {
+    "quotes": ["error", "single"],
+    "indent": ["error", 2],
+    "semi": [2, "never"],
     {{#if_eq lintConfig "standard"}}
     // allow paren-less arrow functions
     'arrow-parens': 0,

@@ -1,12 +1,12 @@
 # vue-webpack的样板文件
 
-> 一个全功能的webpack配置，包含自动热加载(hot-reload), 自动代码检查(lint-on-save), 单元测试(unit testing), 以及css抽取打包(css extraction)
+* 一个全功能的webpack配置，包含自动热加载(hot-reload), 自动代码检查(lint-on-save), 单元测试(unit testing), 以及css抽取打包(css extraction)
 
-> 对vue官方的webpack脚手架模板进行了增强。 增加了对pug(jade), stylus的可选支持; 增加了对vue-router, vue-resource等vue插件的默认支持
+* 对vue官方的webpack脚手架模板进行了增强。 增加了对pug(jade), stylus的可选支持; 增加了对vue-router, vue-resource, vuex等vue插件的默认支持
 
-> 默认添加了少量有用的directive和filter (不需要可自行删除)
+* 默认添加了少量有用的directive和filter (不需要可自行删除)
 
-> 优化了默认Hello World代码，使其更容易帮助新人理解router等插件的使用
+* 优化了默认Hello World代码，使其更容易帮助新人理解router等插件的使用
 
 ## webpack进行vue开发的使用文档
 
@@ -59,4 +59,5 @@ $ npm run dev
     - Selenium and chromedriver dependencies automatically handled.
     - Automatically spawns the Selenium server.
 
+- 使用eslint进行代码规范检查，推荐您开启eslint。为您的团队开启规范编码之旅
 

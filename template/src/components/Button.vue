@@ -1,8 +1,14 @@
-<template>
-  <div class="hello">
-    <h1>\{{ msg }}</h1>
-  </div>
+<template {{#pug}}lang="pug"{{/pug}}>
+{{#pug}}
+.ui.button
+  a {{text}}
+{{else}}
+<div class="app">
+  <h1>{{msg}}</h1>
+</div>
+{{/pug}}
 </template>
+
 
 <script>
 export default {
@@ -19,8 +25,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1 {
-  color: #42b983;
-}
+<style lang="pug" scoped>
+.button
+  padding: 10px 20px
+
 </style>
