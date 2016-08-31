@@ -3,29 +3,38 @@
     "name": {
       "type": "string",
       "required": true,
-      "message": "Project name"
+      "message": "你的项目名称?",
+      "default": "myapp"
     },
     "description": {
       "type": "string",
       "required": false,
-      "message": "Project description",
+      "message": "你的项目描述?",
       "default": "A Vue.js project"
     },
     "author": {
       "type": "string",
-      "message": "Author"
+      "message": "作者?"
+    },
+    "pug": {
+      "type": "confirm",
+      "message": "用 pug(jade) 模板引擎替代原生html标签? (默认选择Yes)"
+    },
+    "stylus": {
+      "type": "confirm",
+      "message": "用stylus替代默认的css? (默认选择Yes)"
     },
     "lint": {
       "type": "confirm",
-      "message": "Use ESLint to lint your code?"
+      "message": "在代码中使用ESLint? (默认选择Yes)"
     },
     "lintConfig": {
       "when": "lint",
       "type": "list",
-      "message": "Pick an ESLint preset",
+      "message": "选择一个ESLint预设标准",
       "choices": [
         {
-          "name": "Standard (https://github.com/feross/standard)",
+          "name": "标准-Standard (https://github.com/feross/standard)",
           "value": "standard",
           "short": "Standard"
         },
@@ -35,7 +44,7 @@
           "short": "AirBNB"
         },
         {
-          "name": "none (configure it yourself)",
+          "name": "none (自己配置)",
           "value": "none",
           "short": "none"
         }
@@ -43,11 +52,11 @@
     },
     "unit": {
       "type": "confirm",
-      "message": "Setup unit tests with Karma + Mocha?"
+      "message": "是否要用 Karma + Mocha 进行单元测试?"
     },
     "e2e": {
       "type": "confirm",
-      "message": "Setup e2e tests with Nightwatch?"
+      "message": "是否要用 Nightwatch 进行e2e测试?"
     }
   },
   "filters": {
@@ -55,5 +64,5 @@
     "test/unit/**/*": "unit",
     "test/e2e/**/*": "e2e"
   },
-  "completeMessage": "To get started:\n\n  cd {{destDirName}}\n  npm install\n  npm run dev\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack"
+  "completeMessage": "开始使用吧:\n\n  cd {{destDirName}}\n  npm install\n  npm run dev\n\n文档可以看这里: https://github.com/cuiyongjian/webpack"
 }

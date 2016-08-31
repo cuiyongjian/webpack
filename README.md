@@ -1,53 +1,62 @@
-# vue-webpack-boilerplate
+# vue-webpack的样板文件
 
-> A full-featured Webpack setup with hot-reload, lint-on-save, unit testing & css extraction.
+> 一个全功能的webpack配置，包含自动热加载(hot-reload), 自动代码检查(lint-on-save), 单元测试(unit testing), 以及css抽取打包(css extraction)
 
-## Documentation
+> 对vue官方的webpack脚手架模板进行了增强。 增加了对pug(jade), stylus的可选支持; 增加了对vue-router, vue-resource等vue插件的默认支持
 
-Common topics are discussed in the [docs](http://vuejs-templates.github.io/webpack). Make sure to read it!
+> 默认添加了少量有用的directive和filter (不需要可自行删除)
 
-## Usage
+> 优化了默认Hello World代码，使其更容易帮助新人理解router等插件的使用
 
-This is a project template for [vue-cli](https://github.com/vuejs/vue-cli). **It is recommended to use npm 3+ for a more efficient dependency tree.**
+## webpack进行vue开发的使用文档
+
+关于vuejs里面官方使用webpack的详细文档可参考 [docs](http://vuejs-templates.github.io/webpack). 
+建议读一下. (因为本脚手架也是基于该模板进行优化而已)
+
+## 本脚手架用法
+
+这是一个基于webpack打包工具的vuejs开发脚手架模板。 本模板需通过[vue-cli](https://github.com/vuejs/vue-cli)进行调用。
+vue-cli建议使用npm 3+的版本.
+node建议4.x.
+
+创建本项目脚手架的命令：
 
 ``` bash
 $ npm install -g vue-cli
-$ vue init webpack my-project
-$ cd my-project
+$ vue init cuiyongjian/webpack my-project-name
+$ cd my-project-name
 $ npm install
 $ npm run dev
 ```
 
-## What's Included
+## 脚手架包含哪些内容？
 
-- `npm run dev`: first-in-class development experience.
-  - Webpack + `vue-loader` for single file Vue components.
-  - State preserving hot-reload
-  - State preserving compilation error overlay
-  - Lint-on-save with ESLint
-  - Source maps
+- 默认添加了vue-router和vue-resource.  vue-router提供页面路由，vue-resource用来支持ajax请求
 
-- `npm run build`: Production ready build.
-  - JavaScript minified with [UglifyJS](https://github.com/mishoo/UglifyJS2).
-  - HTML minified with [html-minifier](https://github.com/kangax/html-minifier).
-  - CSS across all components extracted into a single file and minified with [cssnano](https://github.com/ben-eb/cssnano).
-  - All static assets compiled with version hashes for efficient long-term caching, and a production `index.html` is auto-generated with proper URLs to these generated assets.
+- 默认可选支持'stylus'和'pug(jade)'模板引擎，更高的开发效率
 
-- `npm run unit`: Unit tests run in PhantomJS with [Karma](http://karma-runner.github.io/0.13/index.html) + [Mocha](http://mochajs.org/) + [karma-webpack](https://github.com/webpack/karma-webpack).
-  - Supports ES2015 in test files.
-  - Supports all webpack loaders.
-  - Easy mock injection.
+- `npm run dev`: 首创的开发体验.
+  - Webpack + `vue-loader` 可以让你在单个文件内开发vue组件(扩展名为.vue).
+  - 保留页面状态的热加载。 保存代码，页面自动更新，这还不够，我们的热加载可以保留页面状态，让你不需要重新用鼠标点到当前正在调试的位置。而之前组件的数据和状态都将保留，刷新的仅仅是组件模板和样式。(当然，这也会导致你更改了model数据，界面上不会有变化)
+  - State preserving compilation error overlay (不懂...)
+  - 代码保存立刻eslint进行检查
+  - 生成Source Maps
 
-- `npm run e2e`: End-to-end tests with [Nightwatch](http://nightwatchjs.org/).
-  - Run tests in multiple browsers in parallel.
+- `npm run build`: 为生产环境而编译.
+  - 基于 [UglifyJS](https://github.com/mishoo/UglifyJS2)的JavaScript压缩
+  - 基于 [html-minifier](https://github.com/kangax/html-minifier)的html压缩.
+  - 从各个组件中抽取css并合并到一个文件，最后压缩，基于[cssnano](https://github.com/ben-eb/cssnano).
+  - 所有静态资源编译后自带版本hash，从而可以提供更高效的缓存. index.html里自动生成正确的引用路径Url.
+
+- `npm run unit`: 基于 [Karma](http://karma-runner.github.io/0.13/index.html) + [Mocha](http://mochajs.org/) + [karma-webpack](https://github.com/webpack/karma-webpack) 在PhantomJS里面进行单元测试.
+  - 测试文件编写支持ES6(ES2015).
+  - 支持所有的webpack loaders.
+  - 简单的mock模拟数据注入.
+
+- `npm run e2e`: 基于 [Nightwatch](http://nightwatchjs.org/)进行End-to-End测试.
+  - 并行的在多个浏览器进行测试.
   - Works with one command out of the box:
     - Selenium and chromedriver dependencies automatically handled.
     - Automatically spawns the Selenium server.
 
-### Fork It And Make Your Own
 
-You can fork this repo to create your own boilerplate, and use it with `vue-cli`:
-
-``` bash
-vue init username/repo my-project
-```
