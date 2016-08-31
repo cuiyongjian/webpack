@@ -1,0 +1,68 @@
+{
+  "prompts": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "message": "你的项目名称?",
+      "default": "myapp"
+    },
+    "description": {
+      "type": "string",
+      "required": false,
+      "message": "你的项目描述?",
+      "default": "A Vue.js project"
+    },
+    "author": {
+      "type": "string",
+      "message": "作者?"
+    },
+    "pug": {
+      "type": "confirm",
+      "message": "用 pug(jade) 模板引擎替代原生html标签? (默认选择Yes)"
+    },
+    "stylus": {
+      "type": "confirm",
+      "message": "用stylus替代默认的css? (默认选择Yes)"
+    },
+    "lint": {
+      "type": "confirm",
+      "message": "在代码中使用ESLint? (默认选择Yes)"
+    },
+    "lintConfig": {
+      "when": "lint",
+      "type": "list",
+      "message": "选择一个ESLint预设标准",
+      "choices": [
+        {
+          "name": "标准-Standard (https://github.com/feross/standard)",
+          "value": "standard",
+          "short": "Standard"
+        },
+        {
+          "name": "AirBNB (https://github.com/airbnb/javascript)",
+          "value": "airbnb",
+          "short": "AirBNB"
+        },
+        {
+          "name": "none (自己配置)",
+          "value": "none",
+          "short": "none"
+        }
+      ]
+    },
+    "unit": {
+      "type": "confirm",
+      "message": "是否要用 Karma + Mocha 进行单元测试?"
+    },
+    "e2e": {
+      "type": "confirm",
+      "message": "是否要用 Nightwatch 进行e2e测试?"
+    }
+  },
+  "filters": {
+    ".eslintrc.js": "lint",
+    "test/unit/**/*": "unit",
+    "test/e2e/**/*": "e2e"
+  },
+  "completeMessage": "开始使用吧:\n\n  cd {{destDirName}}\n  npm install\n  npm run dev\n\n文档可以看这里: https://github.com/cuiyongjian/webpack"
+}
