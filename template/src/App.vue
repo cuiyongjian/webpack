@@ -1,4 +1,4 @@
-<template>
+<template {{#pug}}lang="pug"{{/pug}}>
   <div id="app">
     <img class="logo" src="./assets/logo.png">
     <hello></hello>
@@ -13,16 +13,16 @@
 </template>
 
 <script>
-import Hello from './components/Hello'
+import Hello from './components/Hello'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 export default {
   components: {
-    Hello
-  }
-}
+    Hello{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+  }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+}{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 </script>
 
-<style>
+<style {{#pug}}lang="stylus"{{/pug}}>
 html {
   height: 100%;
 }
