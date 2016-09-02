@@ -6,6 +6,12 @@
 
 * 默认添加了少量有用的directive和filter (不需要可自行删除)
 
+* 添加了符合vuex使用规范的示例代码
+
+* 分离了路由视图与vue组件目录，更易于细粒度的区分页面和控件。我们认为views目录下应该放置路由切换的页面视图，components目录下应该放置所谓的UI控件。尽管实际上，他们是同一个东西。
+
+* src/assets目录下是被webpack管理的资源文件，我们增加了css, img, js目录对代码进行区分，这在大型项目中应该是必要的。
+
 * 优化了默认Hello World代码，使其更容易帮助新人理解router等插件的使用
 
 ## webpack进行vue开发的使用文档
@@ -60,4 +66,12 @@ $ npm run dev
     - Automatically spawns the Selenium server.
 
 - 使用eslint进行代码规范检查，推荐您开启eslint。为您的团队开启规范编码之旅
+
+## 小技巧
+* 使用.editorconfig对编辑器进行配置，可以自动化的为您提供编辑器级别的代码规范设置。例如可以设置默认tab键缩进2个空格，满足JavaScript编码规范要求。
+
+
+## 学习资源
+
+* [vuex](http://vuex.vuejs.org/zh-cn/tutorial.html)
 
