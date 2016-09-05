@@ -1,0 +1,13 @@
+{
+  "status": 0,
+  "msg": "OK",
+  "data": {
+    "title": "我是文章标题",
+    "content": "我是文章内容",
+    "author": "胡歌",
+    "source": "新华社",
+    "catName": "新闻",
+    "date": "2014-02-01 12:12:12",
+    "attribute": ["recommend", "image", "slide"]
+  }
+}

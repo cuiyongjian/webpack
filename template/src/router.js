@@ -1,49 +1,49 @@
-import Router from 'vue-router'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-import Vue from 'vue'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import Router from 'vue-router';
+import Vue from 'vue';
 
 // 全局注册 vue-router 插件
-Vue.use(Router){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+Vue.use(Router);
 
 // 让v-link被激活时自动添加的class为“active”
 let router = new Router({
-  linkActiveClass: 'active'{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-}){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+  linkActiveClass: 'active'
+});
 
-// 路由配置
 router.map({
-  '/': {
-    component: require('./components/Home')
+  '/': {   // 首页
+    component: require('./views/Index')
   },
-  '/posts': {
-    component: require('./components/posts/View'),
-    subRoute: {
-      '/:id': {
-        component: require('./components/posts/Detail')
-      }
-    }
-  },
-  '/categorys': {
-    component: require('./components/posts/View'),
-    subRoute: {
-      '/': {
-        component: require('./components/categorys/List')
+  '/posts': {  // 文章
+    component: require('./views/posts/Index'),
+    subRoutes: {
+      '/list/:cat': {  // 文章列表，基于cat栏目类别
+        name: 'cat',
+        component: require('./views/posts/List')
       },
-      '/:name': {
-        component: require('./components/categorys/Detail')
+      '/detail/:id': {  // 文章详情，基于文章id
+        name: 'detail',
+        component: require('./views/posts/Detail')
       }
     }
+  },
+  '/search': { // 搜索结果页. 假设该页是需要鉴权的
+    name: 'search',
+    component: require('./views/Search'),
+    auth: true
+  },
+  '/404': {
+    component: require('./views/404')
   }
 });
 
 
 
-/*
-// 路由重定向. 例如：若你的文章列表路由是'/posts/list'，而/posts路由只做视图的话。
-// 这种情况，则需将'/posts'重定向到子路由'/posts/list'
 
+// 路由404重定向. 避免/posts只显示个无意义视图
 router.redirect({
-  '/posts': '/posts/list'
+  '/posts': '/',
+  '*': '/404'
 })
-*/
+
 
 export default router;

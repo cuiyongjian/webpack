@@ -16,14 +16,6 @@
       "type": "string",
       "message": "作者?"
     },
-    "pug": {
-      "type": "confirm",
-      "message": "用 pug(jade) 模板引擎替代原生html标签? (默认选择Yes)"
-    },
-    "stylus": {
-      "type": "confirm",
-      "message": "用stylus替代默认的css? (默认选择Yes)"
-    },
     "lint": {
       "type": "confirm",
       "message": "在代码中使用ESLint? (默认选择Yes)"

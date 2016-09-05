@@ -1,0 +1,16 @@
+{
+  "status": 0,
+  "msg": "OK",
+  "data": [
+    {
+      "name": "技术",
+      "id": 1,
+      "alias": "teck"
+    },
+    {
+      "name": "情感",
+      "id": 2,
+      "alias": "qg"
+    }
+  ]
+}

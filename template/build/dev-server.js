@@ -7,6 +7,7 @@ var webpackConfig = process.env.NODE_ENV === 'testing'
   ? require('./webpack.prod.conf')
   : require('./webpack.dev.conf')
 
+
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
 // Define HTTP proxies to your custom API backend
@@ -31,7 +32,29 @@ compiler.plugin('compilation', function (compilation) {
     hotMiddleware.publish({ action: 'reload' })
     cb()
   })
-})
+});
+
+// mock劫持
+app.use('/mock', function (req, res, next) {
+  var reqPath = req.path;
+  var localPath = path.join(__dirname, '../mock', reqPath + '.json');
+  var fs = require('fs');
+  fs.readFile(localPath, function (err, data) {
+    resData = {
+      status: 1,
+      msg: '',
+      data: null
+    };
+    if (err) {
+      resData.msg = err.message;
+    }
+    else {
+      resData = JSON.parse(data);
+    }
+    // 若要setTimeout请谨慎：注意闭包，多个并发请求时，resData很容易变成最后一次请求的resData
+    res.json(resData);
+  });
+});
 
 // proxy api requests
 Object.keys(proxyTable).forEach(function (context) {
