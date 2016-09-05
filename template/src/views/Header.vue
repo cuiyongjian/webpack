@@ -8,7 +8,7 @@
   )
     ul
       li(v-for="item in cats")
-        a(v-link="{name: 'cat', params: { cat: item.alias }}") {{item.name}}
+        a(v-link="{name: 'cat', params: { cat: item.alias }}") \{{item.name}}
   .search
     //- | 搜索组件占位
     //- 可用这个做个搜索功能：https://github.com/yelingfeng/vuex-tutorial
