@@ -5,7 +5,7 @@
   )
     .catBox(v-for="item in catBoxs")
       h2
-        a(v-link="{name: 'cat', params: {cat: item.alias}}") {{item.name}}
+        a(v-link="{name: 'cat', params: {cat: item.alias}}") \{{item.name}}
       ul.catBox-content
         item-list(
           v-for="p in item.posts",

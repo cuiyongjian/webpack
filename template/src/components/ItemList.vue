@@ -1,10 +1,10 @@
 <template lang="pug">
   li.item-list
-    span.f-right(v-show="showDate") {{item.date}}
-    span * {{index}} * |
-    a(v-link="{name: 'detail', params: {id: item.id}}") {{item.title}}
+    span.f-right(v-show="showDate") \{{item.date}}
+    span * \{{index}} * |
+    a(v-link="{name: 'detail', params: {id: item.id}}") \{{item.title}}
     .summary(v-if="showSummary")
-      | {{item.summary}}
+      | \{{item.summary}}
 </template>
 
 <script>

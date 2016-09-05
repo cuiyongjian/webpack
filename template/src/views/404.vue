@@ -1,7 +1,7 @@
 <template lang="pug">
   .empty-page
     h1 页面找不到了
-    | {{seconds}} 秒后跳转到首页\{{dots.join('')}}
+    | \{{seconds}} 秒后跳转到首页\{{dots.join('')}}
 </template>
 
 <script>

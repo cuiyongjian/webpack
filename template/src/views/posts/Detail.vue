@@ -2,9 +2,9 @@
 .posts-detail
   h2 {{post.title}}
   div
-    |日期: {{post.date}}  作者：{{post.author}} 分类: {{post.catName}}
+    |日期: \{{post.date}}  作者：\{{post.author}} 分类: \{{post.catName}}
   div
-    |{{post.content}}
+    |\{{post.content}}
 </template>
 
 <script>

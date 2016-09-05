@@ -1,6 +1,6 @@
 <template lang="pug">
   .breadcrumb
-    span {{wrapSubNav}}
+    span \{{wrapSubNav}}
 </template>
 
 <script>
