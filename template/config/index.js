@@ -24,7 +24,7 @@ var proxyTable = {
     changeOrigin: true,
   },
   '/api/': {
-    target: 'http://localhost:8888/mock',
+    target: 'http://localhost:8080/mock',
     changeOrigin: true
   }
 }
