@@ -18,29 +18,17 @@ module.exports = {
     alias: {
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components')
+      'components': path.resolve(__dirname, '../src/components'),
+      'views': path.resolve(__dirname, '../src/views'),
+      'filters': path.resolve(__dirname, '../src/filters'),
+      'directives': path.resolve(__dirname, '../src/directives'),
+      'store': path.resolve(__dirname, '../src/vuex')
     }
   },
   resolveLoader: {
     fallback: [path.join(__dirname, '../node_modules')]
   },
   module: {
-    {{#lint}}
-    preLoaders: [
-      {
-        test: /\.vue$/,
-        loader: 'eslint',
-        include: projectRoot,
-        exclude: /node_modules/
-      },
-      {
-        test: /\.js$/,
-        loader: 'eslint',
-        include: projectRoot,
-        exclude: /node_modules/
-      }
-    ],
-    {{/lint}}
     loaders: [
       {
         test: /\.vue$/,
@@ -78,11 +66,6 @@ module.exports = {
       }
     ]
   },
-  {{#lint}}
-  eslint: {
-    formatter: require('eslint-friendly-formatter')
-  },
-  {{/lint}}
   vue: {
     loaders: utils.cssLoaders()
   }
