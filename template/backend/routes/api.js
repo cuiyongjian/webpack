@@ -29,17 +29,15 @@ router.get('/', function(req, res, next) {
 
 /* contextPath/api 路径的所有请求转发给真正的后端服务 */
 router.all('*', function (req, res) {
-  console.log('来了')
   // 请将target参数设置成 你的真正的后端api服务地址。如果后端服务不需要contextPath路径，你也可以去掉哦~
   // 例如设置为 target: 'http://otherServer:port/'+ contextPath +'/api/'
   // 那么，http://thisServer:port/pathABC/api/posts 的请求会转发到  http://otherServer:port/pathABC/api/posts
-  proxy.web(req, res, {target: 'http://localhost:8080/account'+config.contextPath+'/api/'});
-  proxy.on('error', function (e) {
+  proxy.web(req, res, {target: 'http://localhost:8080/account'+config.contextPath+'/api/'}, function (err) {
     res.json({
       status: 1,
       msg: '后端接口不可用',
       data: null
-    })
+    });
   });
 });
 
