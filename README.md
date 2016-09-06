@@ -19,7 +19,6 @@
 ## webpack进行vue开发的使用文档
 
 关于vuejs里面官方使用webpack的详细文档可参考 [docs](http://vuejs-templates.github.io/webpack). 
-建议读一下. (因为本脚手架也是基于该模板进行优化而已)
 
 ## 本脚手架用法
 
@@ -123,9 +122,21 @@ $ npm start  // 服务器上启动backend (真正上线时，需使用pm2将node
 * views里面这些页面的样式是这样写的： App.vue里面写一些全局的公共的样式，包含了footer和header部分的样式（因为写在首页和文章页是共享他们的，写在哪都不合适）。 然后首页自己的样式就写在首页里面，文章页的就写在文章页里面。 （views视图页面样式并没有使用scoped，UI控件的样式使用scoped）
 要注意页面views这些视图样式最终都会合并起来，所以请注意css优先级（脑补一下最终合并的样子）
 
+* 单文件组件是靠webpack和vue-loader实现的，所以可以通过学习vue-loader来了解在本脚手架中书写vue.js组件的技巧
+
 
 ## 学习资源
 
+
+* [vue官方文档](http://vuejs.org.cn/)
+* [官方脚手架的webpack配置说明](http://vuejs-templates.github.io/webpack/index.html)
 * [vuex](http://vuex.vuejs.org/zh-cn/tutorial.html)
+* [vue-loader](http://vue-loader.vuejs.org/)
+* [webpack教程](http://webpack.toobug.net/zh-cn/)
+* [ES6语法](http://es6.ruanyifeng.com/)
 * [Airbnb JavaScript Style Guide 中文版](https://github.com/yuche/javascript)
+
+## 其它脚手架参考
+[https://github.com/libertyAlone/vue-myTemplate](https://github.com/libertyAlone/vue-myTemplate)
+[简易留言板](https://github.com/kenberkeley/vue-demo#features)
 
