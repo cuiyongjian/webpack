@@ -8,13 +8,14 @@ var proxy = httpProxy.createProxyServer();
 
 0   OK
 1   后端API接口不可用
-2+  留给后端开发人员使用的错误代码
+2   服务端找不到文件，或文件读取错误
+3+  留给后端开发人员使用的错误代码
 
 */
 
 
 
-/* Api路由中间层首页提示 */
+/* API中间层介绍 */
 router.get('/', function(req, res, next) {
   res.json({
     status: 0,
@@ -26,7 +27,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-/* 把 contextPath/api 路径的所有前端请求转发给真正的后端服务 */
+/* contextPath/api 路径的所有请求转发给真正的后端服务 */
 router.all('*', function (req, res) {
   // 例如 http://thisServer:port/pathABC/api/posts 会转发到  http://otherServer:port/pathABC/api/posts
   // 请将target参数设置成 你的真正的后端api服务地址。如果后端服务不需要contextPath路径，你也可以去掉哦~
