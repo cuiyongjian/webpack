@@ -7,6 +7,8 @@ import store from 'store/store'
 
 // 全局注册 vue-resource 插件
 Vue.use(VueResource);
+Vue.http.options.root = '/account'; // 根据后端api实际情况修改ajax请求的前缀。
+
 // 全局注册过滤器
 Vue.filter('fromNow', fromNow);
 

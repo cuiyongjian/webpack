@@ -34,7 +34,7 @@ compiler.plugin('compilation', function (compilation) {
   })
 });
 
-// mock劫持
+// mock劫持. req.path拿到的是/mock/xxx后面的xxx
 app.use('/mock', function (req, res, next) {
   var reqPath = req.path;
   var localPath = path.join(__dirname, '../mock', reqPath + '.json');
@@ -66,7 +66,8 @@ Object.keys(proxyTable).forEach(function (context) {
 })
 
 // handle fallback for HTML5 history API
-app.use(require('connect-history-api-fallback')())
+// TODO: 这个会导致 baseURL 的url解析出错！！！ 暂时禁用
+// app.use(require('connect-history-api-fallback')())
 
 // serve webpack bundle output
 app.use(devMiddleware)
@@ -78,7 +79,6 @@ app.use(hotMiddleware)
 // serve pure static assets
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
-
 module.exports = app.listen(port, function (err) {
   if (err) {
     console.log(err)

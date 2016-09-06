@@ -3,12 +3,13 @@ extends layout
 block content
   h1 前端的Node层
   ul
+    li 提供前端静态资源托管.
     li 提供对后端Json数据接口的转发
-    li 提供前端静态资源托管
-    li 为前端性能优化提供支撑
+    li 为前端性能优化提供支撑，如：服务端渲染
 
   h2 node层启动方法
   p npm start
 
-  h2 静态资源目录
+  h2 前端SPA站点的存放目录：
   p public
+  p 但访问时，要加上你配置的contextPath，比如配置为'/account'，就要访问http://ip:8080/account

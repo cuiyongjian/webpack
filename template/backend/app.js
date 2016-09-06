@@ -24,11 +24,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // 直接访问css扩展名，express会把stylus实时编译成css。
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
+// 将前端资源的请求，托管到public前端目录下
 app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use(auth); // 鉴权中间件. 若是非ajax请求，给返回302跳转，若是ajax请求，给返回ajax无权限错误json数据。
 app.use('/', routes);
-app.use('/users', users);
 app.use(path.join(config.contextPath, 'api'), api);
 
 // catch 404 and forward to error handler

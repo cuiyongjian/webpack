@@ -1,8 +1,8 @@
 # vue-webpack的样板文件
 
-* 一个全功能的webpack配置. 增加了backend目录，它作为前端的服务端node中间层部署在服务器端。 部署流程见下文。
+* 一个全功能的完全前后端分离的Vue开发脚手架。增加了backend目录，它作为前端的服务端node中间层部署在服务器端。 部署流程见下文。
 
-* 包含自动热加载(hot-reload), 自动代码检查(lint-on-save), 单元测试(unit testing), 以及css抽取打包(css extraction)
+* 全功能webpack配置。包含自动热加载(hot-reload), 自动代码检查(lint-on-save), 单元测试(unit testing), 以及css抽取打包(css extraction)
 
 * 对vue官方的webpack脚手架模板进行了增强，默认使用pug(jade)模板引擎，默认使用stylus的css预编译器，默认增加了对vue-router, vue-resource, vuex等vue插件的默认支持。
 
@@ -30,8 +30,15 @@ node建议4.x.
 下载脚手架并进行开发的流程：
 
 1. 先初始化脚手架
-1. 然后进入项目目录，安装依赖
-1. 然后启动前端开发服务器进行开发预览
+1. 然后进入项目目录，安装依赖。
+1. 思考下本应用是在一个域名的根目录下的独立应用(如http://ip:port/index.html)，还是在一个域名的某个子路径下的应用(如http://ip:port/account/index.html)。
+1. 如果是域名根下的应用，则配置config/index.js中的contextPath为'/';  若是域名子路径account下的独立应用，则配置contextPath为'/account'；
+1. 配置src/main.js中的vue.http.options.root，如果全站的ajax都基于同样的前缀，则在这里配置好前缀，若不同页面ajax目标不同，则此处留空，在各个页面单独写ajax目标即可。
+1. 规划页面路由。 路由系统中设置的'/', 'posts'等路由，最终都将表现为 http://ip:port/contextPath/!#/route这样的格式。 也就是说，路由配置的根默认就是从你的contextPath开始的
+1. 前后端并行开发时，前端可以先在本地mock做数据模拟. 在config/index.js中配置proxyTable, 可以将你本地前端localhost:8080的ajax的请求转发给本地http://localhost:8080/mock/。这样的话，你ajax的请求路径最终映射为mock目录下的文件。例如：http://ip:port/account/api/posts这个ajax请求，会转发为http://localhost:8080/mock/account/api/posts, 而最终映射到的文件是：mock/account/api/posts.json.
+1. 假如后端已经开发完毕，那么也可以通过config/index.js里面的proxyTable将你的本地ajax请求，转发给后端真实的api接口，实现开发阶段的前后端联调。
+1. 如上都配置完毕，就可以开发页面了； npm run dev启动前端开发服务器进行开发预览，保存代码后可以自动刷新浏览器，启动的前端开发服务器地址默认是 http://localhost:8080.  你可以PORT=9999 npm run dev这样来通过环境变量来修改默认端口。
+1. npm run lint 可以进行代码规范检查
 
 ``` bash
 $ npm install -g vue-cli

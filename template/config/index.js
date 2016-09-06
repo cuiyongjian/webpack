@@ -1,8 +1,8 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
 
-// 上下文路径，即：访问该应用时在域名后要跟上的path
-var contextPath = '/'
+// 上下文路径
+var contextPath = '/account'
 // 应用根目录，即：应用前端编译在什么目录
 var distRoot = path.join('../backend/public', contextPath)
 
@@ -28,13 +28,11 @@ var proxyTable = {
     target: 'http://10.123.119.158:8713/',
     changeOrigin: true,
   },
-  '/api/': {
-    target: 'http://localhost:8080/mock',
+  '/account/api/': {
+    target: 'http://localhost:8080/mock/',
     changeOrigin: true
   }
 }
-
-
 
 module.exports = {
   build: {
