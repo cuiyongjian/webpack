@@ -2,7 +2,7 @@
 var path = require('path')
 
 // 上下文路径，即：访问该应用时在域名后要跟上的path
-var contextPath = '/bill'
+var contextPath = '/'
 // 应用根目录，即：应用前端编译在什么目录
 var distRoot = path.join('../backend/public', contextPath)
 
