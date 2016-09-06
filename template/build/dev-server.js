@@ -41,7 +41,7 @@ app.use('/mock', function (req, res, next) {
   var fs = require('fs');
   fs.readFile(localPath, function (err, data) {
     resData = {
-      status: 1,
+      status: 2,
       msg: '',
       data: null
     };

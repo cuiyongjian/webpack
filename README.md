@@ -1,8 +1,10 @@
 # vue-webpack的样板文件
 
-* 一个全功能的webpack配置，包含自动热加载(hot-reload), 自动代码检查(lint-on-save), 单元测试(unit testing), 以及css抽取打包(css extraction)
+* 一个全功能的webpack配置. 增加了backend目录，它作为前端的服务端中间层部署在服务器端。 部署流程见下文。
 
-* 对vue官方的webpack脚手架模板进行了增强。 增加了对pug(jade), stylus的可选支持; 增加了对vue-router, vue-resource, vuex等vue插件的默认支持
+* 包含自动热加载(hot-reload), 自动代码检查(lint-on-save), 单元测试(unit testing), 以及css抽取打包(css extraction)
+
+* 对vue官方的webpack脚手架模板进行了增强，默认使用pug(jade)模板引擎，默认使用stylus的css预编译器，默认增加了对vue-router, vue-resource, vuex等vue插件的默认支持。
 
 * 默认添加了少量有用的directive和filter (不需要可自行删除)
 
@@ -25,7 +27,10 @@
 vue-cli建议使用npm 3+的版本.
 node建议4.x.
 
-创建本项目脚手架的命令：
+下载脚手架并进行开发的流程：
+1 先初始化脚手架
+1 然后进入项目目录，安装依赖
+1 然后启动前端开发服务器进行开发预览
 
 ``` bash
 $ npm install -g vue-cli
@@ -33,6 +38,24 @@ $ vue init cuiyongjian/webpack my-project-name
 $ cd my-project-name
 $ npm install
 $ npm run dev
+```
+
+编译和部署流程
+
+1 先配置前端的config/index.js。主要是配置build之后，前端上线时的path路径，例如在你企业服务器上线后为 http://1.1.1.1:8080/test路径访问，那么，index.js中的上下文路径contextPath就应该配置为/test. 这样backend这个中间层才会基于/test路径来托管前端代码。 同时也会将/test/api开始的ajax请求作为转发判断依据。
+1 编译，执行npm run build将前端代码编译到backend/public目录下。
+1 现在，backend目录就是即将要部署的前端node层代码(里面public目录下也包含了所有的前端上线代码)。只需要将backend提交到代码服务器或者任何方式发布到生产服务器即可。
+1 backend发布到生产服务器之后，在服务器上该目录下执行npm install安装backend的依赖。
+1 直接执行npm start启动backend服务。或用强大的pm2等工具将backend作为后台进程启动起来。
+1 此时，backend就会启动在3000端口，当你访问http://ip:port/contextPath即可返回前端应用。访问http://ip:port/contextPath/api/xxx就会将请求转发给后端对应接口。 转发代码在backend/route/api.js里，如需自自定义转发规则可直接修改。
+1 备注：前端开发时，完全不需要考虑ajax请求的路径问题，只需要脑海中默认自己就是个http://domain/index.html的应用即可。ajax全部使用api/xxx这样的请求即可。 只需要在编译上线的时候，考虑如何配置contextPath.
+
+下面是命令提示：
+``` bash
+$ npm run build // 在根代码目录下执行编译
+$ 将backend部署到服务器
+$ npm install // 服务器上执行安装依赖
+$ npm start  // 服务器上启动backend
 ```
 
 ## 脚手架包含哪些内容？
@@ -67,14 +90,14 @@ $ npm run dev
 
 - 使用eslint进行代码规范检查，推荐您开启eslint。为您的团队开启规范编码之旅
 
-## 小技巧
+## 小技巧和说明
 * 使用.editorconfig对编辑器进行配置，可以自动化的为您提供编辑器级别的代码规范设置。例如可以设置默认tab键缩进2个空格，满足JavaScript编码规范要求。
 
 * views源码目录下存放路由相关视图。 components目录下存放控件(组件)。 组件中css样式可添加scoped避免对页面布局造成影响。 不写scoped的样式最终都会打包在app.css里面，所以请学习css优先级方面的知识来避免css样式覆盖和混乱。
 
-* 每个vue文件中，顶级代码空2格缩进开始写，因为<template>等标签已经顶格写了。
+* 每个vue文件中，顶级代码空2格缩进开始写，因为\<template\>等标签已经顶格写了。
 
-* 由于webpack.base.conf.js里面配置了一些alias别名，故在vue的模板和样式中你可以使用~aliasnName/xxx来代表某个目录。在js中可以使用'alias/xxx'代表某个别名目录。
+* 由于webpack.base.conf.js里面配置了一些alias别名，故在vue的模板和样式中你可以使用~aliasnName/xxx来简化引用模块的路径。在js中可以使用'alias/xxx'代表简化引用js模块。
 
 * 我们在express里面实现了一个mock路由，对/mock/的请求进行劫持。
 从而在后端还未开发完成的时候，让前端开发人员可以在本地使用json来模拟数据。

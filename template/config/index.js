@@ -1,6 +1,11 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
 
+// 上下文路径，即：访问该应用时在域名后要跟上的path
+var contextPath = '/bill'
+// 应用根目录，即：应用前端编译在什么目录
+var distRoot = path.join('../backend/public', contextPath)
+
 /*
  & 请将下面的转发配置为你实际的后端地址 &
 
@@ -34,10 +39,16 @@ var proxyTable = {
 module.exports = {
   build: {
     env: require('./prod.env'),
-    index: path.resolve(__dirname, '../dist/index.html'),
-    assetsRoot: path.resolve(__dirname, '../dist'),
+    // 应用的根html物理路径(编译index.html的目标地址)
+    index: path.resolve(__dirname, distRoot, 'index.html'),
+    // 上线的config.js配置文件目标地址。里面存放了backend需要用到的应用路径
+    config: path.resolve(__dirname, '../backend/config.json'),
+    // 应用的根物理路径(编译目标地址)
+    assetsRoot: path.resolve(__dirname, distRoot),
+    // 访问应用的资源文件的相对路径
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/dist',
+    // url中访问该应用的path根路径
+    assetsPublicPath: contextPath,
     productionSourceMap: true,
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
