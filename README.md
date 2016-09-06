@@ -31,38 +31,42 @@ node建议4.x.
 
 1. 先初始化脚手架
 1. 然后进入项目目录，安装依赖。
-1. 思考下本应用是在一个域名的根目录下的独立应用(如http://ip:port/index.html)，还是在一个域名的某个子路径下的应用(如http://ip:port/account/index.html)。
-1. 如果是域名根下的应用，则配置config/index.js中的contextPath为'/';  若是域名子路径account下的独立应用，则配置contextPath为'/account'；
-1. 配置src/main.js中的vue.http.options.root，如果全站的ajax都基于同样的前缀，则在这里配置好前缀，若不同页面ajax目标不同，则此处留空，在各个页面单独写ajax目标即可。
-1. 规划页面路由。 路由系统中设置的'/', 'posts'等路由，最终都将表现为 http://ip:port/contextPath/!#/route这样的格式。 也就是说，路由配置的根默认就是从你的contextPath开始的
-1. 前后端并行开发时，前端可以先在本地mock做数据模拟. 在config/index.js中配置proxyTable, 可以将你本地前端localhost:8080的ajax的请求转发给本地http://localhost:8080/mock/。这样的话，你ajax的请求路径最终映射为mock目录下的文件。例如：http://ip:port/account/api/posts这个ajax请求，会转发为http://localhost:8080/mock/account/api/posts, 而最终映射到的文件是：mock/account/api/posts.json.
-1. 假如后端已经开发完毕，那么也可以通过config/index.js里面的proxyTable将你的本地ajax请求，转发给后端真实的api接口，实现开发阶段的前后端联调。
+1. 此时，你需要思考一下你即将要开发的应用是在一个域名根目录下应用(如http://ip:port/index.html)，还是在域名某个子路径下的应用(如http://ip:port/account/index.html)。
+1. 如果你是域名根下的应用(也就是访问http://yourdomain/直接就是你的应用根路由)，那么，就要配置config/index.js中的contextPath为'/';  若你开发的是域名子路径下的应用，例如公司安排你开发一个独立的account应用，最终部署后也希望是通过http://yourdomain/account/来访问你的这个独立应用，那么，就配置contextPath为'/account'；
+1. 这一步，是给vue-resource这个插件配置请求前缀。比如，配置src/main.js中的vue.http.options.root为'/account'。当然，这不是必须的。如果你全站的ajax都基于同样的前缀，那么，在这里配置好前缀会更方便一点，若你的应用不同页面ajax目标不同，则此处留空，在各个页面单独写ajax目标更好一点。
+1. 这一步是：规划页面路由。要进行应用开发，第一步就是规划你的页面，进而规划出路由。 路由系统中设置的'/', '/posts'等路由，最终都将表现为 http://ip:port/contextPath/!#/route这样的格式。 也就是说，所有路由的"根"默认就是从你的contextPath开始的.
+1. 前后端并行开发时，若后端还没开发完毕，那么，前端可以先在本地mock做数据模拟. 在本脚手架中，这很简单，默认你本地执行npm run dev后会跑在localhost:8080，此时，只需要在config/index.js中配置proxyTable, 就可以将你本地前端localhost:8080的ajax的请求转发给本地http://localhost:8080/mock/。这样的话，你页面中的ajax请求路径最终都会映射为mock目录下的文件。举例来说：http://localhost:8080/account/api/posts这个ajax请求，会转发为http://localhost:8080/mock/account/api/posts, 而最终映射到的文件是：mock/account/api/posts.json.
+1. 假如后端已经开发完毕，那么也可以通过config/index.js里面的proxyTable将你的本地ajax请求，转发给后端真实的api接口，实现本地开发阶段的前后端联调。
 1. 如上都配置完毕，就可以开发页面了； npm run dev启动前端开发服务器进行开发预览，保存代码后可以自动刷新浏览器，启动的前端开发服务器地址默认是 http://localhost:8080.  你可以PORT=9999 npm run dev这样来通过环境变量来修改默认端口。
 1. npm run lint 可以进行代码规范检查
 
+本过程的命令提示：
+
 ``` bash
-$ npm install -g vue-cli
-$ vue init cuiyongjian/webpack my-project-name
-$ cd my-project-name
-$ npm install
-$ npm run dev
+$ npm install -g vue-cli  // 安装vue-cli命令行工具
+$ vue init cuiyongjian/webpack my-project-name  // 下载脚手架并初始化项目
+$ cd my-project-name  // 进入项目目录
+$ npm install  // 安装依赖
+$ npm run dev  // 启动前端本地调试服务器
 ```
 
 编译和部署流程
 
-1. 先配置前端的config/index.js里面的contextPath变量。这是指的前端上线后的path路径，例如在你企业服务器上线后为 http://1.1.1.1:8080/test路径访问，那么，index.js中的上下文路径contextPath就应该配置为/test. 这样backend这个中间层才会基于/test路径来托管前端代码。 同时也会将/test/api开始的ajax请求作为转发判断依据。
+1. 编译就是将前端代码打包压缩，放入到backend目录下的public目录中。backend这个中间层是一个node服务端，最终需要部署到服务器。它也是基于你前面配置的contextPath路径来托管前端代码。
 1. 编译，执行npm run build将前端代码编译到backend/public目录下。
-1. 现在，backend目录就是即将要部署的前端node层代码(里面public目录下也包含了所有的前端上线代码)。只需要将backend提交到代码服务器或者任何方式发布到生产服务器即可。
+1. 现在，backend目录就是即将要部署的前端node层代码(里面public目录下也包含了所有的前端上线代码)。只需要将backend提交到代码服务器，或者发布到npm仓库，或者其他任何方式发布到生产服务器即可。
 1. backend发布到生产服务器之后，在服务器上该目录下执行npm install安装backend的依赖。
 1. backend作为中间层需要将api请求转发给真正的后端服务。所以此时，应去配置backend/routes/api.js里面的转发目标地址，配成真正的后端服务地址。
-1. 直接执行npm start启动backend服务。或用强大的pm2等工具将backend作为后台进程启动起来。
+1. 至此，backend中间层就做了两件事：第一、使用express.static中间件托管前端资源。第二、将api请求转发给后端服务。 如果你需要中间层要做其他的一些服务，那么直接在express里面添加对应路由的代码即可。
+1. 去服务器的backend目录，安装依赖，然后直接执行npm start启动backend服务。或用强大的pm2等工具将backend作为后台进程启动起来。
 1. 此时，backend就会启动在3000端口，当你访问http://ip:port/contextPath即可返回前端应用。访问http://ip:port/contextPath/api/xxx就会将请求转发给后端对应接口。 转发代码在backend/route/api.js里，如需自自定义转发规则可直接修改。
-1. 备注：前端开发时，完全不需要考虑ajax请求的路径问题，只需要脑海中默认自己就是个http://domain/index.html的应用即可。ajax全部使用api/xxx这样的请求即可。 只需要在编译上线的时候，考虑如何配置contextPath.
 
 下面是命令提示：
 ``` bash
-$ npm run build // 在根代码目录下执行编译
-$ 将backend部署到服务器
+$ npm run build // 本地，在根代码目录下执行编译。 会有一个config.json文件生成到backend，不要删掉他哦。
+$ npm publish  // 发布backend到npm仓库
+$ npm install your-project-name  // 在服务器上，下载你的应用
+$ cd your-project-name //进入你的应用
 $ npm install // 进入服务器上的backend目录，在里面执行安装依赖
 $ npm start  // 服务器上启动backend (真正上线时，需使用pm2将node作为daemon进程启动)
 ```
@@ -123,4 +127,5 @@ $ npm start  // 服务器上启动backend (真正上线时，需使用pm2将node
 ## 学习资源
 
 * [vuex](http://vuex.vuejs.org/zh-cn/tutorial.html)
+* [Airbnb JavaScript Style Guide 中文版](https://github.com/yuche/javascript)
 
