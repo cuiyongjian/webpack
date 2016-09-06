@@ -25,10 +25,10 @@ mkdir('-p', assetsPath)
 cp('-R', 'static/', assetsPath)
 
 // 写当前上下文路径，到backend里面，方便backend进行ajax转发时，知道请求的根path
-// var contextConf = {
-//   contextPath: config.build.assetsPublicPath
-// };
-// require('fs').writeFile(config.build.config, JSON.stringify(contextConf, null, '\t'))
+var contextConf = {
+  contextPath: config.build.assetsPublicPath
+};
+require('fs').writeFile(config.build.config, JSON.stringify(contextConf, null, '\t'))
 
 webpack(webpackConfig, function (err, stats) {
   spinner.stop()
