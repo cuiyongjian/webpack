@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(auth); // 鉴权中间件
+// app.use(auth); // 鉴权中间件. 若是非ajax请求，给返回302跳转，若是ajax请求，给返回ajax无权限错误json数据。
 app.use('/', routes);
 app.use('/users', users);
 app.use(path.join(config.contextPath, 'api'), api);
