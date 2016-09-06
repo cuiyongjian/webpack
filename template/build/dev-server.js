@@ -79,6 +79,14 @@ app.use(hotMiddleware)
 // serve pure static assets
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
+app.use('/', function (req, res, next) {
+  if (req.originalUrl === '/' && (config.contextPath !== '/')) {
+    var str = '您config/index.js中的<span style="color:red;">contextPath</span>配置为：' + config.dev.assetsPublicPath + '</br></br></br>';
+    res.send(str + '所以，您不能访问域名根路径，您需访问<a href="' + config.dev.assetsPublicPath + '"> http://'+ req.hostname + config.dev.assetsPublicPath+' </a>');
+    return;
+  }
+  next();
+});
 module.exports = app.listen(port, function (err) {
   if (err) {
     console.log(err)
