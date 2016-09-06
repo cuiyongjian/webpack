@@ -29,9 +29,10 @@ router.get('/', function(req, res, next) {
 
 /* contextPath/api 路径的所有请求转发给真正的后端服务 */
 router.all('*', function (req, res) {
-  // 例如 http://thisServer:port/pathABC/api/posts 会转发到  http://otherServer:port/pathABC/api/posts
   // 请将target参数设置成 你的真正的后端api服务地址。如果后端服务不需要contextPath路径，你也可以去掉哦~
-  proxy.web(req, res, {target: 'http://localhost:8080/' + config.contextPath + '/api/'});
+  // 例如设置为 target: 'http://otherServer:port/'+ contextPath +'/api/'
+  // 那么，http://thisServer:port/pathABC/api/posts 的请求会转发到  http://otherServer:port/pathABC/api/posts
+  proxy.web(req, res, {target: 'http://localhost:8080/api/'});
   proxy.on('error', function (e) {
     res.json({
       status: 1,

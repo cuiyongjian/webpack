@@ -2,7 +2,7 @@
 var path = require('path')
 
 // 上下文路径，即：访问该应用时在域名后要跟上的path
-var contextPath = '/'
+var contextPath = '/bill'
 // 应用根目录，即：应用前端编译在什么目录
 var distRoot = path.join('../backend/public', contextPath)
 
@@ -61,7 +61,7 @@ module.exports = {
     env: require('./dev.env'),
     port: 8080,
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: context,
     proxyTable: proxyTable,
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

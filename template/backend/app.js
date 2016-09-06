@@ -26,6 +26,7 @@ app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// app.use(auth); // 鉴权中间件
 app.use('/', routes);
 app.use('/users', users);
 app.use(path.join(config.contextPath, 'api'), api);

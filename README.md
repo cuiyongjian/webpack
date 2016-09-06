@@ -28,6 +28,7 @@ vue-cli建议使用npm 3+的版本.
 node建议4.x.
 
 下载脚手架并进行开发的流程：
+
 1. 先初始化脚手架
 1. 然后进入项目目录，安装依赖
 1. 然后启动前端开发服务器进行开发预览
@@ -42,7 +43,7 @@ $ npm run dev
 
 编译和部署流程
 
-1. 先配置前端的config/index.js。主要是配置build之后，前端上线时的path路径，例如在你企业服务器上线后为 http://1.1.1.1:8080/test路径访问，那么，index.js中的上下文路径contextPath就应该配置为/test. 这样backend这个中间层才会基于/test路径来托管前端代码。 同时也会将/test/api开始的ajax请求作为转发判断依据。
+1. 先配置前端的config/index.js里面的contextPath变量。这是指的前端上线后的path路径，例如在你企业服务器上线后为 http://1.1.1.1:8080/test路径访问，那么，index.js中的上下文路径contextPath就应该配置为/test. 这样backend这个中间层才会基于/test路径来托管前端代码。 同时也会将/test/api开始的ajax请求作为转发判断依据。
 1. 编译，执行npm run build将前端代码编译到backend/public目录下。
 1. 现在，backend目录就是即将要部署的前端node层代码(里面public目录下也包含了所有的前端上线代码)。只需要将backend提交到代码服务器或者任何方式发布到生产服务器即可。
 1. backend发布到生产服务器之后，在服务器上该目录下执行npm install安装backend的依赖。
@@ -55,8 +56,8 @@ $ npm run dev
 ``` bash
 $ npm run build // 在根代码目录下执行编译
 $ 将backend部署到服务器
-$ npm install // 服务器上执行安装依赖
-$ npm start  // 服务器上启动backend
+$ npm install // 进入服务器上的backend目录，在里面执行安装依赖
+$ npm start  // 服务器上启动backend (真正上线时，需使用pm2将node作为daemon进程启动)
 ```
 
 ## 脚手架包含哪些内容？
