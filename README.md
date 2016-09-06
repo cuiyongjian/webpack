@@ -28,9 +28,9 @@ vue-cli建议使用npm 3+的版本.
 node建议4.x.
 
 下载脚手架并进行开发的流程：
-1 先初始化脚手架
-1 然后进入项目目录，安装依赖
-1 然后启动前端开发服务器进行开发预览
+1. 先初始化脚手架
+1. 然后进入项目目录，安装依赖
+1. 然后启动前端开发服务器进行开发预览
 
 ``` bash
 $ npm install -g vue-cli
@@ -42,13 +42,13 @@ $ npm run dev
 
 编译和部署流程
 
-1 先配置前端的config/index.js。主要是配置build之后，前端上线时的path路径，例如在你企业服务器上线后为 http://1.1.1.1:8080/test路径访问，那么，index.js中的上下文路径contextPath就应该配置为/test. 这样backend这个中间层才会基于/test路径来托管前端代码。 同时也会将/test/api开始的ajax请求作为转发判断依据。
-1 编译，执行npm run build将前端代码编译到backend/public目录下。
-1 现在，backend目录就是即将要部署的前端node层代码(里面public目录下也包含了所有的前端上线代码)。只需要将backend提交到代码服务器或者任何方式发布到生产服务器即可。
-1 backend发布到生产服务器之后，在服务器上该目录下执行npm install安装backend的依赖。
-1 直接执行npm start启动backend服务。或用强大的pm2等工具将backend作为后台进程启动起来。
-1 此时，backend就会启动在3000端口，当你访问http://ip:port/contextPath即可返回前端应用。访问http://ip:port/contextPath/api/xxx就会将请求转发给后端对应接口。 转发代码在backend/route/api.js里，如需自自定义转发规则可直接修改。
-1 备注：前端开发时，完全不需要考虑ajax请求的路径问题，只需要脑海中默认自己就是个http://domain/index.html的应用即可。ajax全部使用api/xxx这样的请求即可。 只需要在编译上线的时候，考虑如何配置contextPath.
+1. 先配置前端的config/index.js。主要是配置build之后，前端上线时的path路径，例如在你企业服务器上线后为 http://1.1.1.1:8080/test路径访问，那么，index.js中的上下文路径contextPath就应该配置为/test. 这样backend这个中间层才会基于/test路径来托管前端代码。 同时也会将/test/api开始的ajax请求作为转发判断依据。
+1. 编译，执行npm run build将前端代码编译到backend/public目录下。
+1. 现在，backend目录就是即将要部署的前端node层代码(里面public目录下也包含了所有的前端上线代码)。只需要将backend提交到代码服务器或者任何方式发布到生产服务器即可。
+1. backend发布到生产服务器之后，在服务器上该目录下执行npm install安装backend的依赖。
+1. 直接执行npm start启动backend服务。或用强大的pm2等工具将backend作为后台进程启动起来。
+1. 此时，backend就会启动在3000端口，当你访问http://ip:port/contextPath即可返回前端应用。访问http://ip:port/contextPath/api/xxx就会将请求转发给后端对应接口。 转发代码在backend/route/api.js里，如需自自定义转发规则可直接修改。
+1. 备注：前端开发时，完全不需要考虑ajax请求的路径问题，只需要脑海中默认自己就是个http://domain/index.html的应用即可。ajax全部使用api/xxx这样的请求即可。 只需要在编译上线的时候，考虑如何配置contextPath.
 
 下面是命令提示：
 ``` bash
@@ -77,8 +77,8 @@ $ npm start  // 服务器上启动backend
   - 从各个组件中抽取css并合并到一个文件，最后压缩，基于[cssnano](https://github.com/ben-eb/cssnano).
   - 所有静态资源编译后自带版本hash，从而可以提供更高效的缓存. index.html里自动生成正确的引用路径Url.
 
-- `npm run unit`: 基于 [Karma](http://karma-runner.github.io/0.13/index.html) + [Mocha](http://mochajs.org/) + [karma-webpack](https://github.com/webpack/karma-webpack) 在PhantomJS里面进行单元测试.
-  - 测试文件编写支持ES6(ES2015).
+- `npm run unit`: 基于 [Karma](http://karma-runner.github.io/0.1.3/index.html) + [Mocha](http://mochajs.org/) + [karma-webpack](https://github.com/webpack/karma-webpack) 在PhantomJS里面进行单元测试.
+  - 测试文件编写支持ES6(ES201.5).
   - 支持所有的webpack loaders.
   - 简单的mock模拟数据注入.
 
