@@ -28,7 +28,8 @@ router.get('/', function(req, res, next) {
 
 /* contextPath/api 路径的所有请求转发给后端 */
 router.all('*', function (req, res) {
-  proxy.web(req, res, {target: 'http://localhost:8080/mock/api/'});
+  // 例如 http://thisServer:port/pathABC/api/posts 会转发到  http://otherServer:port/pathABC/api/posts
+  proxy.web(req, res, {target: 'http://otherServer:8080/' + config.contextPath + '/api/'});
   proxy.on('error', function (e) {
     res.json({
       status: 1,
