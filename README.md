@@ -1,6 +1,6 @@
 # vue-webpack的样板文件
 
-* 一个全功能的webpack配置. 增加了backend目录，它作为前端的服务端中间层部署在服务器端。 部署流程见下文。
+* 一个全功能的webpack配置. 增加了backend目录，它作为前端的服务端node中间层部署在服务器端。 部署流程见下文。
 
 * 包含自动热加载(hot-reload), 自动代码检查(lint-on-save), 单元测试(unit testing), 以及css抽取打包(css extraction)
 
