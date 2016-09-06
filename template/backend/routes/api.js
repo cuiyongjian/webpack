@@ -14,7 +14,7 @@ var proxy = httpProxy.createProxyServer();
 
 
 
-/* API中间层介绍 */
+/* Api路由中间层首页提示 */
 router.get('/', function(req, res, next) {
   res.json({
     status: 0,
@@ -26,10 +26,11 @@ router.get('/', function(req, res, next) {
   });
 });
 
-/* contextPath/api 路径的所有请求转发给后端 */
+/* 把 contextPath/api 路径的所有前端请求转发给真正的后端服务 */
 router.all('*', function (req, res) {
   // 例如 http://thisServer:port/pathABC/api/posts 会转发到  http://otherServer:port/pathABC/api/posts
-  proxy.web(req, res, {target: 'http://otherServer:8080/' + config.contextPath + '/api/'});
+  // 请将target参数设置成 你的真正的后端api服务地址。如果后端服务不需要contextPath路径，你也可以去掉哦~
+  proxy.web(req, res, {target: 'http://localhost:8080/' + config.contextPath + '/api/'});
   proxy.on('error', function (e) {
     res.json({
       status: 1,

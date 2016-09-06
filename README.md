@@ -46,6 +46,7 @@ $ npm run dev
 1. 编译，执行npm run build将前端代码编译到backend/public目录下。
 1. 现在，backend目录就是即将要部署的前端node层代码(里面public目录下也包含了所有的前端上线代码)。只需要将backend提交到代码服务器或者任何方式发布到生产服务器即可。
 1. backend发布到生产服务器之后，在服务器上该目录下执行npm install安装backend的依赖。
+1. backend作为中间层需要将api请求转发给真正的后端服务。所以此时，应去配置backend/routes/api.js里面的转发目标地址，配成真正的后端服务地址。
 1. 直接执行npm start启动backend服务。或用强大的pm2等工具将backend作为后台进程启动起来。
 1. 此时，backend就会启动在3000端口，当你访问http://ip:port/contextPath即可返回前端应用。访问http://ip:port/contextPath/api/xxx就会将请求转发给后端对应接口。 转发代码在backend/route/api.js里，如需自自定义转发规则可直接修改。
 1. 备注：前端开发时，完全不需要考虑ajax请求的路径问题，只需要脑海中默认自己就是个http://domain/index.html的应用即可。ajax全部使用api/xxx这样的请求即可。 只需要在编译上线的时候，考虑如何配置contextPath.
