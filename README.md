@@ -134,6 +134,7 @@ $ npm start  // 服务器上启动backend (真正上线时，需使用pm2将node
 * [vue-loader](http://vue-loader.vuejs.org/)
 * [webpack教程](http://webpack.toobug.net/zh-cn/)
 * [ES6语法](http://es6.ruanyifeng.com/)
+* [Standard JavaScript Style Guide Rules](https://github.com/feross/standard/blob/master/RULES.md)
 * [Airbnb JavaScript Style Guide 中文版](https://github.com/yuche/javascript)
 
 ## 其它脚手架参考
