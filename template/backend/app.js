@@ -38,7 +38,18 @@ app.use(auth())
 // app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 
 // 将前端资源的请求，托管到public前端目录下
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')), {
+  maxAge: '30d',
+  setHeaders: function (res, path, stat) {
+    // js，css等资源全部Cache-Control 30天。反正index.html引用资源使用了md5。
+    // 而首页index.html则设置cache max-age=0或 private，从而不在客户端缓存（为了防止站点升级后，用户没去点刷新而是直接输入网址）
+    // 但我并没有移除etag和last-modify，这样可确保index.html没有变化的情况下，继续使用客户端缓存。
+    if (/\/index.html$/.test(path)) {
+      res.set('Cache-Control', 'private')
+    }
+  }
+});
+
 
 app.use('/', index);
 app.use(config.contextPath, account);
