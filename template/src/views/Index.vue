@@ -14,7 +14,6 @@
           track-by="id",
           show-date=true
         )
-
   partial(name="footer")
 </template>
 
@@ -22,7 +21,6 @@
   import ItemList from 'components/ItemList'
   import header from 'views/Header'
   import footer from 'views/Footer'
-
 
   export default {
     data () {

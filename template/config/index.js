@@ -9,11 +9,13 @@ var distRoot = path.join('../backend/public', contextPath)
 /*
  & 请将下面的转发配置为你实际的后端地址 &
 
-为了解决跨域问题，本地的express服务器会把/jsonrpc/ops和/api/的请求分别转给2个后端地址。
-其中 /api路径会转发给本地localhost:3005，比如你在本地同时开发了一个后端服务。
-其中 /jsonrpc/ops 转发给远程服务器http://10.123.119.158:8713/，比如你在远程有个已经写好的服务，需要前端同时调用。
-proxyTable会在express里一个本地代理中间件，这样webpack利用express把前端托管在8008端口，
-然后前端ajax也直接请求本地的8008端口。express里的proxy中间件会透传给proxyTable配置的api
+1. 为了解决跨域问题，本地的express服务器会把/account/api的请求转给backend。从而在本地与后端进行联调。
+2. 也可以不转给backend，而是转给mock的数据，这样前端server就会劫持mock请求，并返回mock目录下的数据。
+
+比如你npm run dev, webpack利用express把前端托管在8008端口，
+然后前端ajax也直接请求本地的8008端口,
+express里的proxy中间件会将/account/api的请求透传给proxyTable配置的localhost:3000
+这样，你将本地的backend启动，那么backend收到请求就可以进行实际的业务逻辑处理，或者api转发了。
 
 另外，我们在express里面实现了一个mock路由，对/mock/的请求进行劫持。
 从而在后端还未开发完成的时候，让前端开发人员可以在本地使用json来模拟数据。
@@ -23,13 +25,8 @@ proxyTable会在express里一个本地代理中间件，这样webpack利用expre
 */
 
 var proxyTable = {
-  '/jsonrpc/ops': {
-    // target: 'http://localhost:3005',
-    target: 'http://10.123.119.158:8713/',
-    changeOrigin: true,
-  },
   '/account/api/': {
-    target: 'http://localhost:8080/mock/',
+    target: 'http://localhost:3000',
     changeOrigin: true
   }
 }
