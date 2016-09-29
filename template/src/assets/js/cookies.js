@@ -1,8 +1,8 @@
 export default {
-  getCookie(name) {
-    let cookieName = encodeURIComponent(name) + '=',
-    cookieStart = document.cookie.indexOf(cookieName),
-    cookieValue = null
+  getCookie (name) {
+    let cookieName = encodeURIComponent(name) + '='
+    let cookieStart = document.cookie.indexOf(cookieName),
+    let cookieValue = null
 
     if (cookieStart > -1) {
       let cookieEnd = document.cookie.indexOf(';', cookieStart)

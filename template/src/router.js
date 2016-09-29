@@ -1,8 +1,8 @@
-import Router from 'vue-router';
-import Vue from 'vue';
+import Router from 'vue-router'
+import Vue from 'vue'
 
 // 全局注册 vue-router 插件
-Vue.use(Router);
+Vue.use(Router)
 
 // 让v-link被激活时自动添加的class为“active”
 let router = new Router({
@@ -36,14 +36,10 @@ router.map({
   }
 });
 
-
-
-
 // 路由404重定向. 避免/posts只显示个无意义视图
 router.redirect({
   '/posts': '/',
   '*': '/404'
 })
-
 
 export default router;

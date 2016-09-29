@@ -5,8 +5,6 @@
 </template>
 
 <script>
-import BreadCrumb from 'components/BreadCrumb'
-
 export default {
   data () {
     return {

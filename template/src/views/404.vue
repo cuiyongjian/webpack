@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
 export default {
   data () {
     return {
@@ -25,13 +24,13 @@ export default {
           // 注意直接修改数组长度，vue可能检测不到数组变化。http://vuejs.org.cn/guide/list.html#u53D8_u5F02_u65B9_u6CD5
           self.dots.length = 0;
         }
-      }, 500);
+      }, 500)
       this.$interval.time = setInterval(function () {
-        self.seconds--;
+        self.seconds--
         if (self.seconds === 0) {
-          redirect('/');
+          redirect('/')
         }
-      }, 1000);
+      }, 1000)
     },
     deactivate () {
       // 在组件destroy之前，移除掉定时器

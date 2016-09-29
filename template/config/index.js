@@ -28,7 +28,11 @@ var proxyTable = {
   '/account/api/': {
     target: 'http://localhost:3000',
     changeOrigin: true
-  }
+  },
+  // '/account/api/': {
+  //   target: 'http://localhost:8080/mock',
+  //   changeOrigin: true
+  // },
 }
 
 module.exports = {
