@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style lang="stylus">
-@import "~assets/css/variable"
+@import "~assets/stylus/variable"
 
 /* 页面全局 */
 html, body

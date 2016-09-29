@@ -70,7 +70,7 @@
 </script>
 
 <style lang="stylus">
-  @import '~assets/css/variable'
+  @import '~assets/stylus/variable'
   .home-main
     padding-left 5px
     padding-right 15px

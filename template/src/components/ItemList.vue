@@ -19,7 +19,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "~assets/css/variable"
 .item-list
   .f-right
     float: right
