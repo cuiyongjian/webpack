@@ -7,7 +7,7 @@ Vue.use(Router)
 // 让v-link被激活时自动添加的class为“active”
 let router = new Router({
   linkActiveClass: 'active'
-});
+})
 
 router.map({
   '/': {   // 首页
@@ -34,7 +34,7 @@ router.map({
   '/404': {
     component: require('./views/404')
   }
-});
+})
 
 // 路由404重定向. 避免/posts只显示个无意义视图
 router.redirect({
@@ -42,4 +42,4 @@ router.redirect({
   '*': '/404'
 })
 
-export default router;
+export default router

@@ -49,7 +49,7 @@
           let promiseArray = []
           let catBoxs = this.cats // 临时变量，最后再赋值给this.catBox，要不然不监听变化
           catBoxs.forEach(function (item) {
-            let onePromise = self.$http.get('api/posts', {params: {id: item.id}});
+            let onePromise = self.$http.get('api/posts', {params: {id: item.id}})
             onePromise.then(function (res) {
               item.posts = res.json().data
             })
@@ -57,7 +57,7 @@
           })
           // 待到所有box数据都加载完成，就把整个数组赋值给catBoxs. 整个数组换掉的话，是可以被vue跟踪到的。
           Promise.all(promiseArray).then(function (res) {
-            self.catBoxs = catBoxs;
+            self.catBoxs = catBoxs
           })
         })
       }
