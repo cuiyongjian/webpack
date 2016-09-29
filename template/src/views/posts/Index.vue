@@ -35,22 +35,22 @@
     },
     events: {
       'setSubNav': function (data) {
-        this.subNav = data;
+        this.subNav = data
       }
     },
     route: {
       data ({to}) {
         // 为了让面包屑导航能先
-        let self = this;
-        function setSubNav() {
+        let self = this
+        function setSubNav () {
           if (to.name === 'cat') {
             // 文章列表页才做处理，详情页直接由Detail.vue来通知这边的subNav属性。
-            let curCat = self.cats.filter(item=>item.alias===to.params.cat)[0]
+            let curCat = self.cats.filter(item => item.alias === to.params.cat)[0]
             self.subNav = ['首页', curCat.name]
           }
         }
         if (this.cats.length) {
-          setSubNav();
+          setSubNav()
         }
         else {
           this.setCats().then(setSubNav)

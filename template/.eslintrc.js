@@ -25,6 +25,8 @@ module.exports = {
     'arrow-parens': 0,
     // allow async-await
     'generator-star-spacing': 0,
+    // 允许stroustrup风格的else块，也就是else需在结尾花括号之后另起一行
+    'brace-style': ['error', 'stroustrup'],
     {{/if_eq}}
     {{#if_eq lintConfig "airbnb"}}
     'import/no-unresolved': 0,

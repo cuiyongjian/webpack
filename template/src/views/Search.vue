@@ -3,7 +3,6 @@
 </template>
 
 <script>
-
 export default {
   data () {
     return {
@@ -14,5 +13,4 @@ export default {
 
 <style lang="stylus">
 @import '~assets/stylus/variable'
-
 </style>

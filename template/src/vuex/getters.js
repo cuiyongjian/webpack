@@ -1,3 +1,3 @@
 export function getCats (state) {
-  return state.cats;
+  return state.cats
 }

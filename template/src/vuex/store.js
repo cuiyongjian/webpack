@@ -3,7 +3,6 @@ import Vue from 'vue'
 
 Vue.use(Vuex)
 
-
 const state = {
   cats: []
 }

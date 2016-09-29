@@ -1,5 +1,4 @@
 <template lang="pug">
-
   ul.posts-list
     item-list(
       v-for="p in posts",
@@ -9,14 +8,13 @@
       show-date=true,
       show-summary=true
     )
-
 </template>
 
 <script>
   import ItemList from 'components/ItemList'
 
-
   export default {
+
     data () {
       return {
         page: 1,
@@ -24,22 +22,25 @@
         posts: []
       }
     },
+
     components: {
       ItemList
     },
+
     route: {
       data ({to}) {
         // 拉取文章
         let self = this
-        let getPosts = this.$http.get('api/posts', {params: {page: this.page, limit: this.limit}});
+        let getPosts = this.$http.get('api/posts', {params: {page: this.page, limit: this.limit}})
         getPosts.then(function (res) {
-          res = res.json();
+          res = res.json()
           if (res.status === 0) {
             self.posts = res.data
           }
         })
       }
     }
+
   }
 </script>
 
