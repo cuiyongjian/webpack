@@ -25,14 +25,14 @@ express里的proxy中间件会将/account/api的请求透传给proxyTable配置�
 */
 
 var proxyTable = {
-  '/account/api/': {
-    target: 'http://localhost:3000',
-    changeOrigin: true
-  },
   // '/account/api/': {
-  //   target: 'http://localhost:8080/mock',
+  //   target: 'http://localhost:3000',
   //   changeOrigin: true
   // },
+  '/account/api/': {
+    target: 'http://localhost:8080/mock',
+    changeOrigin: true
+  },
 }
 
 module.exports = {
