@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressSession = require('express-session')
 var auth = require('./lib/auth')
+var compression = require('compression')
 
 var index = require('./routes/index');
 var api = require('./routes/api');
@@ -33,6 +34,9 @@ app.use(expressSession({
 }))
 // 鉴权. 若是非ajax请求，给返回302跳转，若是ajax请求，给返回ajax无权限错误json数据。
 app.use(auth())
+
+// gzip压缩
+app.use(compression())
 
 // 直接访问css扩展名，express会把stylus实时编译成css。
 // app.use(require('stylus').middleware(path.join(__dirname, 'public')));

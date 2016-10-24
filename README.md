@@ -10,7 +10,11 @@
 
 * 添加了几个Hello World的blog页面，更完整的展示vue的使用方法
 
-* 分离了路由视图与vue组件目录，更易于细粒度的区分页面和控件。
+* 分离了路由视图与vue组件目录，更易于细粒度的区分页面和控件
+
+* 本脚手架使用standard JavaScript Style Guide规范进行书写
+
+* 本脚手架的ajax接口格式采用{status: 0, msg: '', data: null}的格式，在全局ajax钩子进行的错误处理
 
 
 ## 目录结构

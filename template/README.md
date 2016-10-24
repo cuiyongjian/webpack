@@ -17,6 +17,9 @@ npm run build
 # run unit tests
 npm run unit
 
+# run eslint
+npm run lint -s
+
 # run e2e tests
 npm run e2e
 

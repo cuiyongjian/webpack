@@ -51,7 +51,7 @@
           catBoxs.forEach(function (item) {
             let onePromise = self.$http.get('api/posts', {params: {id: item.id}})
             onePromise.then(function (res) {
-              item.posts = res.json().data
+              item.posts = res.body.data
             })
             promiseArray.push(onePromise)
           })

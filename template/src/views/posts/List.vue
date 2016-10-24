@@ -33,7 +33,7 @@
         let self = this
         let getPosts = this.$http.get('api/posts', {params: {page: this.page, limit: this.limit}})
         getPosts.then(function (res) {
-          res = res.json()
+          res = res.body
           if (res.status === 0) {
             self.posts = res.data
           }

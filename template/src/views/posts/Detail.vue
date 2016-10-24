@@ -21,7 +21,7 @@ export default {
       let url = 'api/posts/' + to.params.id
       let self = this
       this.$http.get(url).then((res) => {
-        res = res.json()
+        res = res.body
         if (res.status === 0) {
           self.post = res.data
           this.$dispatch('setSubNav', ['首页', self.post.catName, '文章详情'])
