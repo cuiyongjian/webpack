@@ -15,8 +15,9 @@ module.exports = {
   externals: {
     jquery: 'jQuery'
   },
+  // 加入webpack对.stylus, css扩展名的加载支持
   resolve: {
-    extensions: ['', '.js', '.vue'],
+    extensions: ['', '.js', '.vue', '.styl', '.css'],
     fallback: [path.join(__dirname, '../node_modules')],
     alias: {
       'src': path.resolve(__dirname, '../src'),
